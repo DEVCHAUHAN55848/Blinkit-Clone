@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Blinkit – Groceries delivered in minutes</title>
+<style>
+:root{
+  --yellow:#f8cb46;
+  --green:#0c831f;
+  --text:#1f1f1f;
+  --muted:#666;
+  --line:#ececec;
+  --grey:#f3f3f3;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:"Segoe UI",Arial,sans-serif;color:var(--text);background:#fff;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+ul{list-style:none}
+.container{max-width:1000px;margin:0 auto;padding:12px 16px 40px}
+
+/* HEADER */
+.header{border-bottom:1px solid var(--line);background:#fff;position:sticky;top:0;z-index:10}
+.header-inner{max-width:1200px;margin:0 auto;padding:10px 16px;display:flex;align-items:center;gap:24px}
+.logo{font-size:30px;font-weight:800;color:var(--yellow);letter-spacing:-1px;padding-right:20px;border-right:1px solid var(--line)}
+.logo span{color:var(--green)}
+.delivery{display:flex;flex-direction:column;font-size:11px;color:var(--muted);min-width:170px}
+.delivery strong{font-size:13px;color:var(--text)}
+.search{flex:1;display:flex;align-items:center;gap:10px;background:var(--grey);border-radius:10px;padding:0 14px;height:42px}
+.search input{flex:1;border:0;background:transparent;font-size:13px;outline:none}
+.login{font-size:14px;padding:0 10px}
+.cart{background:var(--green);color:#fff;font-size:13px;font-weight:600;padding:12px 18px;border-radius:8px;white-space:nowrap}
+
+/* BANNER */
+.banner{display:flex;align-items:center;justify-content:space-between;gap:20px;border-radius:12px;padding:32px 40px;color:#fff;background:linear-gradient(100deg,#1f7a2e 0%,#2f9a3e 55%,#d9e8b4 100%);min-height:190px}
+.banner h1{font-size:34px;line-height:1.15;margin-bottom:10px}
+.banner p{font-size:17px;max-width:340px;line-height:1.4;margin-bottom:18px}
+.banner-img{font-size:56px;line-height:1.2;text-align:center;max-width:300px}
+.btn-white,.btn-dark{display:inline-block;font-size:13px;font-weight:600;padding:9px 16px;border-radius:6px}
+.btn-white{background:#fff;color:var(--text)}
+.btn-dark{background:#2b2b2b;color:#fff}
+.small{font-size:11px;padding:7px 12px}
+
+/* PROMO CARDS */
+.promos{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:18px 0}
+.promo{display:flex;justify-content:space-between;align-items:flex-end;border-radius:10px;padding:16px;min-height:150px;overflow:hidden}
+.promo h2{font-size:18px;line-height:1.15;margin-bottom:6px}
+.promo p{font-size:11px;margin-bottom:12px;max-width:140px}
+.promo-img{font-size:56px}
+.pharmacy{background:#0fb5a6;color:#fff}
+.pet{background:#f6b820;color:#222}
+.baby{background:#b9c7d9;color:#222}
+
+/* CATEGORIES */
+.categories{display:grid;grid-template-columns:repeat(10,1fr);gap:18px 10px;background:linear-gradient(#fff,#f6fff0);padding:10px 0}
+.cat{display:flex;flex-direction:column;align-items:center;text-align:center;font-size:11px;font-weight:500;gap:8px}
+.thumb{width:100%;aspect-ratio:1/1;max-width:64px;border-radius:10px;background:#e8eefc;display:grid;place-items:center;font-size:30px}
+
+/* FOOTER */
+.footer{border-top:1px solid var(--line);background:#fafafa;padding:36px 16px 20px}
+.footer-inner{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr 1.6fr 1fr;gap:30px}
+.f-col h3{font-size:16px;margin-bottom:14px}
+.f-col li{margin-bottom:9px;font-size:13px;color:var(--muted)}
+.f-col ul:not(.two-col){columns:2}
+.two-col{columns:2;column-gap:20px}
+.store{display:block;background:#000;color:#fff;font-size:13px;font-weight:600;padding:10px 16px;border-radius:8px;margin-bottom:10px;width:max-content}
+.social{display:flex;gap:10px;margin-top:16px}
+.social a{width:34px;height:34px;border-radius:50%;background:#2b2b2b;color:#fff;display:grid;place-items:center;font-size:13px;font-weight:700}
+.copy{max-width:1100px;margin:28px auto 0;padding-top:16px;border-top:1px solid var(--line);font-size:12px;color:var(--muted)}
+
+/* TABLET */
+@media(max-width:900px){
+  .categories{grid-template-columns:repeat(5,1fr)}
+  .banner h1{font-size:28px}
+  .banner-img{font-size:44px}
+  .footer-inner{grid-template-columns:1fr 1fr}
+  .f-col.wide{grid-column:1 / -1;order:3}
+  .delivery{display:none}
+}
+
+/* MOBILE */
+@media(max-width:600px){
+  .header-inner{flex-wrap:wrap;gap:10px}
+  .logo{border:0;padding:0;font-size:26px}
+  .login{margin-left:auto}
+  .search{order:5;flex:1 1 100%}
+  .banner{flex-direction:column;align-items:flex-start;padding:22px 18px}
+  .banner h1{font-size:24px}
+  .banner p{font-size:14px}
+  .banner-img{font-size:36px;max-width:100%}
+  .promos{grid-template-columns:1fr}
+  .categories{grid-template-columns:repeat(4,1fr);gap:16px 8px}
+  .footer-inner{grid-template-columns:1fr}
+  .two-col,.f-col ul:not(.two-col){columns:1}
+}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="header">
+  <div class="header-inner">
+    <a href="#" class="logo">blink<span>it</span></a>
+    <div class="delivery">
+      <strong>Delivery in 17 minutes</strong>
+      <span>XJFQ+5X9, NH 58, Meerut, Utta… ▾</span>
+    </div>
+    <div class="search">
+      <span>🔍</span>
+      <input type="text" placeholder='Search "chocolate"' aria-label="Search">
+    </div>
+    <a href="#" class="login">Login</a>
+    <a href="#" class="cart">🛒 My Cart</a>
+  </div>
+</header>
+
+<main class="container">
+
+  <!-- MAIN BANNER -->
+  <section class="banner">
+    <div class="banner-text">
+      <h1>Stock up on daily essentials</h1>
+      <p>Get farm-fresh goodness &amp; a range of exotic fruits, vegetables, eggs &amp; more</p>
+      <a href="#" class="btn-white">Shop Now</a>
+    </div>
+    <div class="banner-img" aria-hidden="true">🥛 🍌 🥦 🍎 🥕 🥚</div>
+  </section>
+
+  <!-- PROMOTIONAL CARDS -->
+  <section class="promos">
+    <article class="promo pharmacy">
+      <div>
+        <h2>Pharmacy at your doorstep!</h2>
+        <p>Cough syrups, pain relief sprays &amp; more</p>
+        <a href="#" class="btn-white small">Order Now</a>
+      </div>
+      <span class="promo-img" aria-hidden="true">💊</span>
+    </article>
+
+    <article class="promo pet">
+      <div>
+        <h2>Pet care supplies at your door</h2>
+        <p>Food, treats, toys &amp; more</p>
+        <a href="#" class="btn-dark small">Order Now</a>
+      </div>
+      <span class="promo-img" aria-hidden="true">🐶</span>
+    </article>
+
+    <article class="promo baby">
+      <div>
+        <h2>No time for a diaper run?</h2>
+        <p>Get baby care essentials</p>
+        <a href="#" class="btn-dark small">Order Now</a>
+      </div>
+      <span class="promo-img" aria-hidden="true">👶</span>
+    </article>
+  </section>
+
+  <!-- PRODUCT CATEGORIES -->
+  <section class="categories">
+    <a href="#" class="cat"><span class="thumb">🌿</span>Paan Corner</a>
+    <a href="#" class="cat"><span class="thumb">🍞</span>Dairy, Bread &amp; Eggs</a>
+    <a href="#" class="cat"><span class="thumb">🥬</span>Fruits &amp; Vegetables</a>
+    <a href="#" class="cat"><span class="thumb">🥤</span>Cold Drinks &amp; Juices</a>
+    <a href="#" class="cat"><span class="thumb">🍟</span>Snacks &amp; Munchies</a>
+    <a href="#" class="cat"><span class="thumb">🍜</span>Breakfast &amp; Instant Food</a>
+    <a href="#" class="cat"><span class="thumb">🍫</span>Sweet Tooth</a>
+    <a href="#" class="cat"><span class="thumb">🍪</span>Bakery &amp; Biscuits</a>
+    <a href="#" class="cat"><span class="thumb">☕</span>Tea, Coffee &amp; Milk Drinks</a>
+    <a href="#" class="cat"><span class="thumb">🌾</span>Atta, Rice &amp; Dal</a>
+    <a href="#" class="cat"><span class="thumb">🌶️</span>Masala, Oil &amp; More</a>
+    <a href="#" class="cat"><span class="thumb">🥫</span>Sauces &amp; Spreads</a>
+    <a href="#" class="cat"><span class="thumb">🍗</span>Chicken, Meat &amp; Fish</a>
+    <a href="#" class="cat"><span class="thumb">🥗</span>Organic &amp; Premium</a>
+    <a href="#" class="cat"><span class="thumb">🍼</span>Baby Care</a>
+    <a href="#" class="cat"><span class="thumb">💊</span>Pharma &amp; Wellness</a>
+    <a href="#" class="cat"><span class="thumb">🧴</span>Cleaning Essentials</a>
+    <a href="#" class="cat"><span class="thumb">🖊️</span>Home &amp; Office</a>
+    <a href="#" class="cat"><span class="thumb">🧼</span>Personal Care</a>
+    <a href="#" class="cat"><span class="thumb">🐾</span>Pet Care</a>
+  </section>
+</main>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="f-col">
+      <h3>Useful Links</h3>
+      <ul>
+        <li><a href="#">About</a></li>
+        <li><a href="#">Careers</a></li>
+        <li><a href="#">Blog</a></li>
+        <li><a href="#">Press</a></li>
+        <li><a href="#">Lead</a></li>
+        <li><a href="#">Value</a></li>
+        <li><a href="#">Privacy</a></li>
+        <li><a href="#">Terms</a></li>
+        <li><a href="#">FAQs</a></li>
+        <li><a href="#">Security</a></li>
+        <li><a href="#">Mobile</a></li>
+        <li><a href="#">Contact</a></li>
+      </ul>
+    </div>
+
+    <div
